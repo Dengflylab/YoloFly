@@ -1,0 +1,48 @@
+#!/bin/bash
+#SBATCH -N 1               # request one node
+#SBATCH -t 0-09:00:00	        # request two hours
+#SBATCH -p single    # in single partition (queue)
+#SBATCH -A loni_quantum01
+#SBATCH -o slurm.out # optional, name of the stdout, using the job number (%j) and the hostname of the node (%N)
+#SBATCH -e slurm.err # optional, name of the stderr, using job and hostname values
+# below are job commands
+
+#bash tmp
+Yolo=$(echo "$(dirname -- "$(readlink -f "${BASH_SOURCE}")")")
+TIME="0-05:00:00"
+mkdir run
+mkdir Video_post
+
+N_ROW=$(wc -l Video_list.csv|awk '{print $1}')
+for (( i=1; i<=$N_ROW; i++ ))
+    do
+    TMP2=$(awk 'NR=='$i'{print}' Video_list.csv)
+    V_name=$(echo $TMP2| awk '{print $1}')
+    NUM=$(grep $V_name Video_list| awk '{print $1}')
+    PP=$(echo $TMP2| awk '{print $2}')
+    PM=$(echo $TMP2| awk '{print $3}')
+    FS=$(echo $TMP2| awk '{print $4}')
+    FE=$(echo $TMP2| awk '{print $5}')
+    # Start to generate script
+    echo $NUM $V_name
+    grep "^#" $Yolo/fly_track_model.sh > run/Data_$V_name\_$FS\_$FE.sh
+    sed -i 's=slurm='run/slurm_$V_name'=g' run/Data_$V_name\_$FS\_$FE.sh
+    sed -i 's=SBATCH -p gpu=SBATCH -p single=g' run/Data_$V_name\_$FS\_$FE.sh
+    sed -i '/#SBATCH -t/d' run/Data_$V_name\_$FS\_$FE.sh
+    sed -i '/below are job commands/d' run/Data_$V_name\_$FS\_$FE.sh
+    echo '#SBATCH -t' $TIME >> run/Data_$V_name\_$FS\_$FE.sh
+    # First Script
+    if [ $(ls Video_post | grep -w $V_name\_$FS\_$FE| wc| awk '{print $1}') -eq 0 ]; then
+        echo "python $Yolo/Post_data/1_single_fly_run_arg.py -i $V_name -pp $PP -pm $PM -fs $FS -fe $FE"  >> run/Data_$V_name\_$FS\_$FE.sh
+    fi
+    # Second Script
+    if [ $(ls Video_post | grep -w Inter[ea]ction_$V_name\_$FS\_$FE| wc| awk '{print $1}') -eq 0 ]; then
+        echo "python $Yolo/Post_data/2_Chas_behavior_arg.py -i $V_name -pp $PP -pm $PM -fs $FS -fe $FE"  >> run/Data_$V_name\_$FS\_$FE.sh
+    fi
+    # Third Script
+    if [ $(ls Video_post | grep -w Correct_$V_name\_$FS\_$FE| wc| awk '{print $1}') -eq 0 ]; then
+        echo "python $Yolo/Post_data/3_single_and_Chascls_arg.py -i $V_name  -fs $FS -fe $FE"  >> run/Data_$V_name\_$FS\_$FE.sh
+    fi
+    sbatch run/Data_$V_name\_$FS\_$FE.sh
+    #sleep 3
+done

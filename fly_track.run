@@ -1,0 +1,35 @@
+#!/bin/bash
+#SBATCH -N 1               # request one node
+#SBATCH -t 2-09:00:00	        # request two hours
+#SBATCH -p gpu    # in single partition (queue)
+#SBATCH -A loni_quantum01
+#SBATCH -o slurm.out # optional, name of the stdout, using the job number (%j) and the hostname of the node (%N)
+#SBATCH -e slurm.err # optional, name of the stderr, using job and hostname values
+# below are job commands
+
+#bash tmp
+Yolo=$(echo "$(dirname -- "$(readlink -f "${BASH_SOURCE}")")")
+Model=2022_05_11_p633_1280_5l_e700_b128
+
+mkdir run
+mkdir csv
+
+N_ROW=$(wc -l Video_list|awk '{print $1}')
+for (( i=1; i<=$N_ROW; i++ ))
+    do
+    TMP=$(awk 'NR=='$i'{print}' Video_list)
+    NUM=$(echo $TMP|awk '{print $1}')
+    VIDEO=$(echo $TMP|awk '{print $2}')
+    V_name=$(echo $VIDEO| awk -F/ '{print $NF}')
+    NN=$(ls csv | grep -w $V_name| wc| awk '{print $1}')
+    if [ $NN -eq 0 ]; then
+        echo $VIDEO $NUM $V_name
+        sed 's/$Model/'$Model'/g' $Yolo/fly_track_model.sh > run/track_$V_name.sh
+        sed -i 's=$VIDEO='$VIDEO'=g' run/track_$V_name.sh
+        sed -i 's=$NUM='$NUM'=g'     run/track_$V_name.sh
+        sed -i 's=$Yolo='$Yolo'=g'   run/track_$V_name.sh
+        sed -i 's=slurm='run/slurm_$V_name'=g' run/track_$V_name.sh
+        #sbatch run/track_$V_name.sh
+        sleep 3
+    fi
+done

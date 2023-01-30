@@ -1,0 +1,745 @@
+ScreenManager:
+    ProfileScreen:
+    MenuScreen:
+    UploadScreen:
+
+<ProfileScreen>:
+    name: 'profile'
+    MDBoxLayout:
+        id: page_main_box
+        orientation: "vertical"
+        #md_bg_color: app.theme_cls.primary_color
+
+        MDBoxLayout:
+            size_hint: (1, 0.05)
+            MDBoxLayout:
+                MDRaisedButton:
+                    id: page_main
+                    text: "Main page"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    md_bg_color: app.theme_cls.primary_light
+                    on_press: root.manager.current = 'profile'
+
+                MDRaisedButton:
+                    id: page_calibrate
+                    text: "Calibrate"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    on_press: root.manager.current = 'calibrate'
+
+                MDRaisedButton:
+                    text: "primary_dark"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    md_bg_color: app.theme_cls.primary_dark
+                    on_press: root.manager.current = 'upload'
+            MDBoxLayout:
+                MDLabel:
+                    id: infor_id
+                    pos_hint: {'right': 1, 'center_y': .5}
+                    text: "Let's Start"
+
+        MDBoxLayout:
+            MDBoxLayout:
+                padding: 10, 10, 10, 10
+                MDBoxLayout:
+                    padding: 0, 0, 5, 0
+
+                    orientation: "vertical"
+                    MDBoxLayout:
+                        id: Video_arear
+
+                        size_hint: (1, 0.7)
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1
+                            Line:
+                                width: 1
+                                rectangle: self.x, self.y, self.width, self.height
+                        MDLabel:
+                            text: "Video Arear"
+                            halign: "center"
+
+                    MDBoxLayout:
+                        size_hint: (1, 0.05)
+                        MDBoxLayout:
+                            MDIconButton:
+                                id: butn_play_b
+                                icon: "skip-backward"
+                            MDIconButton:
+                                id: butn_play_p
+                                icon: "play"
+                            MDIconButton:
+                                id: butn_play_f
+                                icon: "skip-forward"
+                            MDSlider:
+                                id: slider
+                                min: 1
+                                max: 100
+                                value: 1
+                                thumb_color: "red"
+
+                        MDBoxLayout:
+
+                            size_hint: (.17, 1)
+                            MDRaisedButton:
+                                id: butn_click_body
+                                pos_hint: {'right': 1, 'center_y': .5}
+                                text: "Add Body"
+                                md_bg_color: app.theme_cls.primary_light
+
+                            MDRaisedButton:
+                                id: butn_click_head
+                                pos_hint: {'right': 1, 'center_y': .5}
+                                text: "Add Head"
+
+                            MDRaisedButton:
+                                id: butn_click_print
+                                pos_hint: {'right': 1, 'center_y': .5}
+                                text: "Print"
+                                md_bg_color: app.theme_cls.primary_dark
+                                on_release: None
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint: (1, 0.25)
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1
+                            Line:
+                                width: 1
+                                rectangle: self.x, self.y, self.width, self.height
+                        # bottons layer 1
+                        MDBoxLayout:
+                            padding: 10, 10, 10, 0
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                text: "Video: "
+                            MDTextFieldRound:
+                                id: choose_video
+                                hint_text: "location of the video"
+                                text: ""
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                halign: "center"
+                                text: "Model:"
+                            MDTextFieldRound:
+                                id: choose_model
+                                hint_text: 'location of the model'
+                                text: "models/best.pt"
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                halign: "center"
+                                text: "Save:"
+                            MDTextFieldRound:
+                                id: choose_save
+                                hint_text: 'location of the result'
+                                text: "csv"
+
+                        MDBoxLayout:
+                            padding: 10, 10, 10, 0
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 250, 30
+
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "Size: "
+                                MDTextFieldRound:
+                                    size: 60, 20
+                                    hint_text: "Pixel_x"
+                                    text: "1920"
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "       x"
+                                MDTextFieldRound:
+                                    size: 60, 20
+                                    hint_text: 'height of the pixel'
+                                    text: "1080"
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 150, 30
+                                padding: 20, 0, 0, 0
+                                MDLabel:
+                                    size_hint_x: None
+                                    size: 60, 10
+                                    text: "Pre. Size:"
+                                MDTextFieldRound:
+                                    id: Arg_img_size
+                                    size: 60, 20
+                                    hint_text: "Pixel_x"
+                                    text: "1280"
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 420, 30
+                                padding: 30, 0, 0, 0
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "Calibration: "
+                                MDTextFieldRound:
+                                    id: Cali_lu
+                                    size: 60, 20
+                                    hint_text: "up, left"
+                                    text: "258,995"
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "       x"
+                                MDTextFieldRound:
+                                    id: Cali_rd
+                                    size: 60, 20
+                                    hint_text: 'down, right'
+                                    text: "1484,307"
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 180, 30
+                                padding: 20, 0, 0, 0
+                                MDLabel:
+                                    size: 50, 10
+                                    text: "Leap Threshold: "
+                                MDTextFieldRound:
+                                    id: Arg_leap_t
+                                    size_hint_x: None
+                                    size: 50, 10
+                                    pos_hint: {'left':1, 'center_y': .5}
+                                    hint_text: "0~1"
+                                    text: "0.3"
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 180, 30
+                                padding: 20, 0, 0, 0
+                                MDLabel:
+                                    size: 50, 10
+                                    text: "Target Number:"
+                                MDTextFieldRound:
+                                    id: Arg_target_num
+                                    size_hint_x: None
+                                    size: 50, 10
+                                    pos_hint: {'left':1, 'center_y': .5}
+                                    hint_text: "int"
+                                    text: "13"
+                        # bottons layer 2
+                        MDBoxLayout:
+                            size_hint_y: 1
+                            padding: 10, 10, 10, 0
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 180, 30
+
+                                MDLabel:
+                                    size: 40, 10
+                                    text: "Confidence Fly: "
+                                MDTextFieldRound:
+                                    id: Arg_confidence
+                                    size_hint_x: None
+                                    size: 50, 10
+                                    pos_hint: {'left':1, 'center_y': .5}
+                                    hint_text: "0~1"
+                                    text: "0.3"
+                            BoxLayout:
+                                padding: 20, 0, 0, 0
+                                size_hint_x: None
+                                size: 180, 30
+
+                                MDLabel:
+                                    size_hint_x: None
+                                    size: 90, 10
+                                    text: "Confidence Behaviors:"
+                                MDTextFieldRound:
+                                    padding: 10, 0, 0, 0
+                                    id: Arg_confidence_b
+                                    size_hint_x: None
+                                    size: 50, 10
+                                    pos_hint: {'right':1, 'center_y': .5}
+                                    hint_text: "0~1"
+                                    text: "0.4"
+
+
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 200, 40
+                                MDLabel:
+                                    size: 40, 10
+                                    text: "behavior count:"
+                                MDCheckbox:
+                                    id: switch_bh_count
+                                    group: 'group'
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+                            # Switch buttons
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "tracking:"
+                                MDSwitch:
+                                    id: switch_tarcking
+                                    abutn_scroll_deletective: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "track show:"
+                                MDSwitch:
+                                    id: switch_tarck_show
+                                    active: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "head bind:"
+                                MDSwitch:
+                                    id: switch_head
+                                    active: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "save result:"
+                                MDSwitch:
+                                    id: switch_save
+                                    active: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+                        MDBoxLayout:
+                            padding: 10, 10, 0, 0
+
+                            MDRectangleFlatIconButton:
+                                id: butn_start
+                                text: "Start Anotation"
+                                icon: "play"
+                                text_color: 1, 0, 0, 1
+                                md_bg_color: 1, 1, 1, 1
+                                icon_color: 1, 0, 0, 1
+                                #icon_size: "32sp"
+
+                        MDBoxLayout:
+                            size_hint: None, None
+                            pos: self.width, self.height
+                            MDRectangleFlatIconButton:
+                                id: butn_vi_choose
+                                icon: "folder-image"
+                                text: "Video Choose"
+                            MDRectangleFlatIconButton:
+                                id: butn_mo_choose
+                                icon: "folder"
+                                text: "Model Choose"
+                            MDRectangleFlatIconButton:
+                                id: butn_sa_choose
+                                icon: "save"
+                                text: "Save"
+                MDBoxLayout:
+                    orientation: "vertical"
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        Line:
+                            width: 1
+                            rectangle: self.x, self.y, self.width, self.height
+                    size_hint: (0.1,1)
+
+
+                    ScrollView:
+                        MDList:
+                            id: scroll
+
+                    MDBoxLayout:
+                        size_hint_y: .04
+                        MDIconButton:
+                            id: butn_scroll_refresh
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "refresh"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+                        MDIconButton:
+                            id: butn_scroll_delete
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "trash-can"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+                        MDIconButton:
+                            id: butn_scroll_clear
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "nuke"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+
+<MenuScreen>:
+    name: 'calibrate'
+    MDBoxLayout:
+        id: page_main_box
+        orientation: "vertical"
+        #md_bg_color: app.theme_cls.primary_color
+
+        MDBoxLayout:
+            size_hint: (1, 0.05)
+            MDBoxLayout:
+
+                MDRaisedButton:
+                    id: page_main
+                    text: "Main page"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    md_bg_color: app.theme_cls.primary_light
+                    on_press: root.manager.current = 'profile'
+
+                MDRaisedButton:
+                    id: page_calibrate
+                    text: "Calibrate"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    on_press: root.manager.current = 'calibrate'
+
+                MDRaisedButton:
+                    text: "primary_dark"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    md_bg_color: app.theme_cls.primary_dark
+                    on_press: root.manager.current = 'upload'
+            MDBoxLayout:
+                MDLabel:
+                    id: infor_id
+                    size_hint: None, 1
+                    pos_hint: {'right': 1, 'center_y': .5}
+                    text: "Let's Start"
+
+        MDBoxLayout:
+            MDBoxLayout:
+                padding: 10, 10, 10, 10
+                MDBoxLayout:
+                    padding: 0, 0, 5, 0
+
+                    orientation: "vertical"
+                    MDBoxLayout:
+                        id: Video_arear
+
+                        size_hint: (1, 0.7)
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1
+                            Line:
+                                width: 1
+                                rectangle: self.x, self.y, self.width, self.height
+                        MDLabel:
+                            text: "Video Arear"
+                            halign: "center"
+
+                    MDBoxLayout:
+                        size_hint: (1, 0.05)
+                        MDBoxLayout:
+                            MDIconButton:
+                                id: butn_play_b
+                                icon: "skip-backward"
+                            MDIconButton:
+                                id: butn_play_p
+                                icon: "play"
+                            MDIconButton:
+                                id: butn_play_f
+                                icon: "skip-forward"
+                            MDSlider:
+                                id: slider
+                                min: 1
+                                max: 100
+                                value: 1
+                                thumb_color: "red"
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint: (1, 0.25)
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1
+                            Line:
+                                width: 1
+                                rectangle: self.x, self.y, self.width, self.height
+                        # bottons layer 1
+                        MDBoxLayout:
+                            padding: 10, 10, 10, 0
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                text: "Video: "
+                            MDTextFieldRound:
+                                id: choose_video
+                                hint_text: "location of the video"
+                                text: ""
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                halign: "center"
+                                text: "Data read:"
+                            MDTextFieldRound:
+                                id: choose_data
+                                hint_text: 'location of the model'
+                                text: "csv/test_1.json"
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                halign: "center"
+                                text: "Save to:"
+                            MDTextFieldRound:
+                                id: choose_save
+                                hint_text: 'location of the result'
+                                text: "csv"
+
+                        # bottons layer 2
+                        MDBoxLayout:
+                            padding: 10, 10, 10, 0
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 250, 30
+
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "Size: "
+                                MDTextFieldRound:
+                                    size: 60, 20
+                                    hint_text: "Pixel_x"
+                                    text: "1920"
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "       x"
+                                MDTextFieldRound:
+                                    size: 60, 20
+                                    hint_text: 'height of the pixel'
+                                    text: "1080"
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 420, 30
+                                padding: 30, 0, 0, 0
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "Calibration: "
+                                MDTextFieldRound:
+                                    id: Cali_lu
+                                    size: 60, 20
+                                    hint_text: "up, left"
+                                    text: "258,995"
+                                MDLabel:
+                                    size: 10, 10
+                                    text: "       x"
+                                MDTextFieldRound:
+                                    id: Cali_rd
+                                    size: 60, 20
+                                    hint_text: 'down, right'
+                                    text: "1484,307"
+
+                        # bottons layer 3
+                        MDBoxLayout:
+                            size_hint_y: 1
+                            padding: 10, 10, 10, 0
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 180, 30
+
+                                MDLabel:
+                                    size: 40, 10
+                                    text: "Confidence: "
+                                MDTextFieldRound:
+                                    id: Arg_confidence
+                                    size_hint_x: None
+                                    size: 50, 10
+                                    pos_hint: {'left':1, 'center_y': .5}
+                                    hint_text: "0~1"
+                                    text: "0.4"
+
+                            BoxLayout:
+                                size_hint: None, None
+                                size: 200, 30
+                                padding: 20, 0, 0, 0
+
+                                MDLabel:
+                                    size: 40, 10
+                                    text: "tracks frames: "
+                                MDTextFieldRound:
+                                    id: Arg_track_frame
+                                    size_hint_x: None
+                                    size: 60, 10
+                                    pos_hint: {'left':1, 'center_y': .5}
+                                    hint_text: "int"
+                                    text: "45"
+
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "ID show:"
+                                MDSwitch:
+                                    id: switch_id_show
+                                    abutn_scroll_deletective: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "track show:"
+                                MDSwitch:
+                                    id: switch_tarck_show
+                                    active: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                            BoxLayout:
+                                padding: 30, 0, 0, 0
+                                size_hint: None, 1
+                                size: 150, 40
+
+                                MDLabel:
+                                    size: 30, 10
+                                    text: "head bind:"
+                                MDSwitch:
+                                    id: switch_head
+                                    active: False
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+                        # bottons layer 4
+                        MDBoxLayout:
+                            padding: 10, 10, 0, 0
+
+
+                            MDLabel:
+                                size_hint: None, None
+                                pos_hint: {'center_y': .5}
+                                size: 120, 10
+                                text: "Start Anotation:"
+                                text_color: 1, 0, 0, 1
+                            MDSwitch:
+                                id: switch_annotate
+                                abutn_scroll_deletective: False
+                                pos_hint: {'center_x': .5, 'center_y': .5}
+
+                            MDBoxLayout:
+                                size_hint_x: None
+                                padding: 15, 10, 0, 0
+                                MDRectangleFlatIconButton:
+                                    id: butn_pos_inherit_m
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    icon: ""
+                                    text: "Inherit pos -N"
+                            MDBoxLayout:
+                                size_hint_x: None
+                                padding: 40, 10, 0, 0
+                                MDRectangleFlatIconButton:
+                                    id: butn_pos_inherit_p
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    icon: ""
+                                    text: "Inherit pos +N"
+                            MDBoxLayout:
+                                size_hint_x: None
+                                size_x: 60
+                            MDBoxLayout:
+                                size_hint_x: None
+                                size: 100, 30
+                                MDLabel:
+                                    pos_hint: { 'center_y': .5}
+                                    text: "N="
+                                    text_color: 1, 0, 0, 1
+                                MDTextFieldRound:
+                                    id: Arg_number_N
+                                    pos_hint: {'left':1, 'center_y': .5}
+                                    hint_text: "int"
+                                    text: "1"
+
+
+                        MDBoxLayout:
+                            size_hint: None, None
+                            pos: self.width, self.height
+                            MDRectangleFlatIconButton:
+                                id: butn_vi_choose
+                                icon: "folder-image"
+                                text: "Video Choose"
+                            MDRectangleFlatIconButton:
+                                id: butn_mo_choose
+                                icon: "folder"
+                                text: "Model Choose"
+                            MDRectangleFlatIconButton:
+                                id: butn_sa_caled
+                                icon: "content-save"
+                                text: "Save"
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint: (0.11,1)
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        Line:
+                            width: 1
+                            rectangle: self.x, self.y, self.width, self.height
+
+
+                    ScrollView:
+                        MDList:
+                            id: scroll
+
+                    MDBoxLayout:
+                        size_hint_y: .04
+                        MDIconButton:
+                            id: butn_scroll_refresh
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "refresh"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+                        MDIconButton:
+                            id: butn_scroll_switch
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "account-switch-outline"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+                        MDIconButton:
+                            id: butn_scroll_clear
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "nuke"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+                        MDIconButton:
+                            id: butn_scroll_remove
+                            pos_hint: {'right': 1, 'center_y': .5}
+                            icon: "selection-remove"
+                            #md_bg_color: app.theme_cls.primary_dark
+                            on_release: None
+
+<UploadScreen>:
+    name: 'upload'
+    MDBoxLayout:
+        id: page_main_box
+        orientation: "vertical"
+        #md_bg_color: app.theme_cls.primary_color
+
+        MDBoxLayout:
+            size_hint: (1, 0.05)
+            MDRaisedButton:
+                id: page_main
+                text: "Main page"
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                md_bg_color: app.theme_cls.primary_light
+                on_press: root.manager.current = 'profile'
+
+            MDRaisedButton:
+                id: page_calibrate
+                text: "Calibrate"
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                on_press: root.manager.current = 'calibrate'
+
+            MDRaisedButton:
+                text: "primary_dark"
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                md_bg_color: app.theme_cls.primary_dark
+                on_press: root.manager.current = 'upload'

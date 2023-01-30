@@ -1,0 +1,29 @@
+<ListItemWithCheckbox>:
+
+    IconLeftWidget:
+        icon: root.icon
+
+    RightCheckbox:
+
+MDBoxLayout:
+    id: page_main_box
+    orientation: "vertical"
+    #md_bg_color: app.theme_cls.primary_color
+
+    MDBoxLayout:
+        size_hint: (1, 0.05)
+        MDRaisedButton:
+            id: page_main
+            text: "Main page"
+            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+            md_bg_color: app.theme_cls.primary_light
+
+        MDRaisedButton:
+            id: page_calibrate
+            text: "Calibrate"
+            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+
+        MDRaisedButton:
+            text: "primary_dark"
+            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+            md_bg_color: app.theme_cls.primary_dark

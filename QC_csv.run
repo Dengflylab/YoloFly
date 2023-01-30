@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -N 1               # request one node
+#SBATCH -t 0-09:00:00	        # request two hours
+#SBATCH -p gpu    # in single partition (queue)
+#SBATCH -A loni_quantum01
+#SBATCH -o slurm.out # optional, name of the stdout, using the job number (%j) and the hostname of the node (%N)
+#SBATCH -e slurm.err # optional, name of the stderr, using job and hostname values
+# below are job commands
+
+#bash tmp
+#python Yolo_dir/Post_data/QC.py -p 1
+
+
+Yolo=$(echo "$(dirname -- "$(readlink -f "${BASH_SOURCE}")")")
+
+head -n 11 $Yolo/QC_csv.run > run/QC_csv.sh
+sed -i "s/#python/python/;s=Yolo_dir=$Yolo=" run/QC_csv.sh
+
+sbatch run/QC_csv.sh
