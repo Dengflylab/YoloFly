@@ -21,9 +21,10 @@ pip install -r requirements.txt
 
 ```bash
 # assign the loc of the model, video, etc
-Model=/mnt/Ken_lap/Github/yolo5_bc/runs/train/fly800_x/weights/best.pt
+Model=/mnt/Ken_lap/Github/yolov5/runs/train/2022_07_01_p677_1280_5l_e700_b128_withBW/weights/best.pt
 Video=/mnt/Ken_lap/Vlog/flies/20210412-promE-V105005_29C6d.mp4
-python3 detect_220101.py --weight $Model  --source $Video --view-img  --conf-thres 0.4 --chain-det
+NUM=13
+python3 detect_220101.py --weight $Model  --source $Video --view-img  --conf-thres 0.4 --bh-count --tar-track --head-bind --img-size 1280 --num-fly $NUM
 
 ```
 
