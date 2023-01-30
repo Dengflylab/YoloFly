@@ -10,6 +10,23 @@ YOLOv5 🚀 is a family of object detection architectures and models pretrained 
 -->
 </div>
 
+## Install
+
+```bash
+git clone https://github.com/Dengflylab/YoloFly.git  # clone
+cd YoloFly
+pip install -r requirements.txt
+```
+
+
+```bash
+# assign the loc of the model, video, etc
+Model=/mnt/Ken_lap/Github/yolo5_bc/runs/train/fly800_x/weights/best.pt
+Video=/mnt/Ken_lap/Vlog/flies/20210412-promE-V105005_29C6d.mp4
+python3 detect_220101.py --weight $Model  --source $Video --view-img  --conf-thres 0.4 --chain-det
+
+```
+
 ## <div align="center">Document &#129712;蝇  </div>
 
 ==Before doing every thing:==
