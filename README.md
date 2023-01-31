@@ -11,7 +11,7 @@ YOLOv5 🚀 is a family of object detection architectures and models pretrained 
 </div>
 
 <video width="320" height="240" controls>
-  <source src="movie.mp4" type="Example/6_dishes.mp4">
+  <source src="movie.mp4" type="Example/6_dishes.Mp4">
 </video>
 
 ## Install
