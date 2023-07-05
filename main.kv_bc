@@ -114,7 +114,7 @@ ScreenManager:
                                 size_hint: None, None
                                 pos_hint: {'center_y': .5}
                                 text: "Video: "
-                            MDTextField:
+                            MDTextFieldRound:
                                 id: choose_video
                                 hint_text: "location of the video"
                                 text: ""
@@ -123,7 +123,7 @@ ScreenManager:
                                 pos_hint: {'center_y': .5}
                                 halign: "center"
                                 text: "Model:"
-                            MDTextField:
+                            MDTextFieldRound:
                                 id: choose_model
                                 hint_text: 'location of the model'
                                 text: "models/best.pt"
@@ -132,7 +132,7 @@ ScreenManager:
                                 pos_hint: {'center_y': .5}
                                 halign: "center"
                                 text: "Save:"
-                            MDTextField:
+                            MDTextFieldRound:
                                 id: choose_save
                                 hint_text: 'location of the result'
                                 text: "csv"
@@ -146,14 +146,14 @@ ScreenManager:
                                 MDLabel:
                                     size: 10, 10
                                     text: "Size: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     size: 60, 20
                                     hint_text: "Pixel_x"
                                     text: "1920"
                                 MDLabel:
                                     size: 10, 10
                                     text: "       x"
-                                MDTextField:
+                                MDTextFieldRound:
                                     size: 60, 20
                                     hint_text: 'height of the pixel'
                                     text: "1080"
@@ -165,7 +165,7 @@ ScreenManager:
                                     size_hint_x: None
                                     size: 60, 10
                                     text: "Pre. Size:"
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_img_size
                                     size: 60, 20
                                     hint_text: "Pixel_x"
@@ -177,7 +177,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 10, 10
                                     text: "Calibration: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Cali_lu
                                     size: 60, 20
                                     hint_text: "up, left"
@@ -185,7 +185,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 10, 10
                                     text: "       x"
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Cali_rd
                                     size: 60, 20
                                     hint_text: 'down, right'
@@ -197,7 +197,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 50, 10
                                     text: "Leap Threshold: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_leap_t
                                     size_hint_x: None
                                     size: 50, 10
@@ -211,7 +211,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 50, 10
                                     text: "Target Number:"
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_target_num
                                     size_hint_x: None
                                     size: 50, 10
@@ -229,7 +229,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 40, 10
                                     text: "Confidence Fly: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_confidence
                                     size_hint_x: None
                                     size: 50, 10
@@ -245,7 +245,7 @@ ScreenManager:
                                     size_hint_x: None
                                     size: 90, 10
                                     text: "Confidence Behaviors:"
-                                MDTextField:
+                                MDTextFieldRound:
                                     padding: 10, 0, 0, 0
                                     id: Arg_confidence_b
                                     size_hint_x: None
@@ -472,7 +472,7 @@ ScreenManager:
                                 size_hint: None, None
                                 pos_hint: {'center_y': .5}
                                 text: "Video: "
-                            MDTextField:
+                            MDTextFieldRound:
                                 id: choose_video
                                 hint_text: "location of the video"
                                 text: ""
@@ -481,7 +481,7 @@ ScreenManager:
                                 pos_hint: {'center_y': .5}
                                 halign: "center"
                                 text: "Data read:"
-                            MDTextField:
+                            MDTextFieldRound:
                                 id: choose_data
                                 hint_text: 'location of the model'
                                 text: "csv/test_1.json"
@@ -490,7 +490,7 @@ ScreenManager:
                                 pos_hint: {'center_y': .5}
                                 halign: "center"
                                 text: "Save to:"
-                            MDTextField:
+                            MDTextFieldRound:
                                 id: choose_save
                                 hint_text: 'location of the result'
                                 text: "csv"
@@ -505,14 +505,14 @@ ScreenManager:
                                 MDLabel:
                                     size: 10, 10
                                     text: "Size: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     size: 60, 20
                                     hint_text: "Pixel_x"
                                     text: "1920"
                                 MDLabel:
                                     size: 10, 10
                                     text: "       x"
-                                MDTextField:
+                                MDTextFieldRound:
                                     size: 60, 20
                                     hint_text: 'height of the pixel'
                                     text: "1080"
@@ -523,7 +523,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 10, 10
                                     text: "Calibration: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Cali_lu
                                     size: 60, 20
                                     hint_text: "up, left"
@@ -531,7 +531,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 10, 10
                                     text: "       x"
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Cali_rd
                                     size: 60, 20
                                     hint_text: 'down, right'
@@ -548,7 +548,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 40, 10
                                     text: "Confidence: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_confidence
                                     size_hint_x: None
                                     size: 50, 10
@@ -564,7 +564,7 @@ ScreenManager:
                                 MDLabel:
                                     size: 40, 10
                                     text: "tracks frames: "
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_track_frame
                                     size_hint_x: None
                                     size: 60, 10
@@ -651,7 +651,7 @@ ScreenManager:
                                     pos_hint: { 'center_y': .5}
                                     text: "N="
                                     text_color: 1, 0, 0, 1
-                                MDTextField:
+                                MDTextFieldRound:
                                     id: Arg_number_N
                                     pos_hint: {'left':1, 'center_y': .5}
                                     hint_text: "int"

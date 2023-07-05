@@ -17,7 +17,7 @@ YOLOv5 🚀 is a family of object detection architectures and models pretrained 
 ## Install
 
 ```bash
-# this repository only support for older version if pytorch
+# this repository only support for older version of pytorch
 conda create -y --name yolo python=3.7 Tensorflow=2.0.0 pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=10.2 -c pytorch
 
 git clone https://github.com/Dengflylab/YoloFly.git  # clone
