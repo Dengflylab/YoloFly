@@ -13,6 +13,7 @@ torchvision>=0.8.1
 tqdm>=4.41.0
 Kivy>=2.0.0
 kivymd>=1.0.0.dev0
+plyer>=2.0.0
 
 # Logging -------------------------------------
 tensorboard>=2.4.1
